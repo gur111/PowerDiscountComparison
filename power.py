@@ -68,6 +68,9 @@ discount_plans = [
 # Layout
 app.layout = html.Div([
     html.H1("Electricity Consumption Analysis"),
+    html.Div([
+        html.A('Link to download data from חברת חשמל',href='https://www.iec.co.il/consumption-info-menu/remote-reading-info', target='_blank')
+    ]),
 
     # Input for electricity price
     html.H3("Electricity Price (per kWh):"),
