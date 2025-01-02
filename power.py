@@ -18,7 +18,6 @@ data = data.dropna()
 data = data[(data["Date"].str.strip() != "") & (data["Time"].str.strip() != "")]
 data["DateTime"] = pd.to_datetime(data["Date"] + " " + data["Time"], format="%d/%m/%Y %H:%M", errors="coerce")
 data = data.dropna(subset=["DateTime"])
-data = data[data["DateTime"] >= "2024-09-15"]
 data["Consumption"] = pd.to_numeric(data["Consumption"], errors="coerce")
 data = data.dropna(subset=["Consumption"])
 data["Hour"] = data["DateTime"].dt.hour
@@ -27,7 +26,38 @@ data["Month"] = data["DateTime"].dt.month
 
 # Initialize Dash app
 app = dash.Dash(__name__)
-discount_plans = []  # Stores multiple discount plans
+discount_plans = [
+    {
+        "start_hour": 0,
+        "end_hour": 23,
+        "discount": 7,
+        "plan_type": "Both"
+    },
+    {
+        "start_hour": 23,
+        "end_hour": 16,
+        "discount": 10,
+        "plan_type": "Both"
+    },
+    {
+        "start_hour": 23,
+        "end_hour": 6,
+        "discount": 20,
+        "plan_type": "Both"
+    },
+    {
+        "start_hour": 14,
+        "end_hour": 19,
+        "discount": 18,
+        "plan_type": "Both"
+    },
+    {
+        "start_hour": 6,
+        "end_hour": 16,
+        "discount": 15,
+        "plan_type": "Weekdays"
+    }
+]  # Stores multiple discount plans
 
 # Layout
 app.layout = html.Div([
@@ -212,10 +242,11 @@ def update_dashboard(selected_month, price, n_clicks, contents, import_n_clicks,
     return weekday_fig, weekend_fig, html.Div([cost_summary_html, html.H4("Discount Plans:"), discount_plans_html]), json_output
 
 
-# Run the app
-#if __name__ == "__main__":
-#    app.run_server(debug=True)
-
-#if __name__ == "__main__":
-#    app.run_server(debug=False, host='0.0.0.0', port=80)
 server = app.server
+
+# Run the app
+if __name__ == "__main__":
+    app.run_server(debug=True)
+
+# if __name__ == "__main__":
+#    app.run_server(debug=False, host='0.0.0.0', port=80)
