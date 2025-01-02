@@ -216,5 +216,6 @@ def update_dashboard(selected_month, price, n_clicks, contents, import_n_clicks,
 #if __name__ == "__main__":
 #    app.run_server(debug=True)
 
-if __name__ == "__main__":
-    app.run_server(debug=False, host='0.0.0.0', port=80)
+#if __name__ == "__main__":
+#    app.run_server(debug=False, host='0.0.0.0', port=80)
+server = app.server
