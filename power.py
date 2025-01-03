@@ -69,13 +69,13 @@ discount_plans = [
 app.layout = html.Div([
     html.H1("Electricity Consumption Analysis"),
     html.Div([
-        html.Div("Enter the link, login and scroll down to: קבלת קובץ אקסל עם נתוני צריכה מהשנה האחרונה למייל שלך."),
+        html.Div("Click the link, login and scroll down to: קבלת קובץ אקסל עם נתוני צריכה מהשנה האחרונה למייל שלך."),
         html.A('Link to download data from חברת חשמל',href='https://www.iec.co.il/consumption-info-menu/remote-reading-info', target='_blank')
     ]),
 
     # Input for electricity price
     html.H3("Electricity Price (per kWh):"),
-    dcc.Input(id="price-input", type="number", value=0.61, step=0.01),  # Changed default value to 0.61
+    dcc.Input(id="price-input", type="number", value=0.65, step=0.01),  # Changed default value to 0.65
     html.Span('ILS'),
     # Discount plan inputs
     html.H3("Add Discount Plan:"),
