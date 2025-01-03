@@ -69,7 +69,7 @@ discount_plans = [
 app.layout = html.Div([
     html.H1("Electricity Consumption Analysis"),
     html.Div([
-        html.Div("קבלת קובץ אקסל עם נתוני צריכה מהשנה האחרונה למייל שלך."),
+        html.Div("Login and scroll down to קבלת קובץ אקסל עם נתוני צריכה מהשנה האחרונה למייל שלך."),
         html.A('Link to download data from חברת חשמל',href='https://www.iec.co.il/consumption-info-menu/remote-reading-info', target='_blank')
     ]),
 
